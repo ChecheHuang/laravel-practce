@@ -1,36 +1,41 @@
-# Artisan 命令
+<?php
 
-## 查看所有指令
-```
-php artisan list
-```
+namespace App\Console\Commands;
 
-## 幫助
-```
-php artisan help migrate
-```
+use Illuminate\Console\Command;
 
-## 創建自己的命令
-```
-php artisan make:command SendEmails
-```
-//會在app/Console/Commands下
-$signature 為 available commands(可加參數)
-$description 為描述
-handle為執行區塊(可讀參數)
+class SendEmails extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'send:email {user} {--queue}';
 
-## 閉包命令
-直接在routes/console.php下加入
-```php
-Artisan::command('send:sms {user}', function ($user) {
-    dd($user);
-    //php artisan send:sms 123
-})->purpose('send a sms to user');
-```
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Send a eMail';
 
-## handle 方法
-```php
- public function handle()
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
+    public function handle()
     {
         //獲取參數
         // $userId = $this->argument('user');
@@ -80,7 +85,4 @@ Artisan::command('send:sms {user}', function ($user) {
 
         return 0;
     }
-```
-
-
-
+}

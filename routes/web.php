@@ -17,7 +17,7 @@ use PHPUnit\Framework\Test;
 |
 */
 //測試控制器
-Route::any('/test',TestController::class);
+Route::get('/test',TestController::class);
 
 Route::get('/', function () {
     return view('welcome');

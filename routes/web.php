@@ -16,6 +16,8 @@ use PHPUnit\Framework\Test;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//測試控制器
+Route::any('/test',TestController::class);
 
 Route::get('/', function () {
     return view('welcome');
